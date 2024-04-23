@@ -17,7 +17,6 @@ class Task2Test {
     @MethodSource("generateData")
     void testIsContainsDuplicates(List<Integer> list) {
         assertTrue(task2.isContainsDuplicates(list));
-
     }
 
     static Stream<Arguments> generateData() {
@@ -35,7 +34,6 @@ class Task2Test {
     @MethodSource("generateDataNotValid")
     void testIsNotContainsDuplicates(List<Integer> list) {
         assertFalse(task2.isContainsDuplicates(list));
-
     }
 
     static Stream<Arguments> generateDataNotValid() {

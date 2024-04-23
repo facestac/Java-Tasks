@@ -13,56 +13,68 @@ result = [1,2]
 Т.е. индексы 1 и 2 (значение 8 и 15) в сумме дают искомое число 23
  */
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Task1 {
-    private List<Integer> listNumbers = new ArrayList<>(List.of(8, 3, 15, 17));
 
     public static void main(String[] args) {
         Task1 task = new Task1();
+        List<Integer> listNumbers = new ArrayList<>(List.of(15, 2, 3, 17, 8, 45));
         int compareNumber = 23;
-        List<Integer> listIndexes = task.getIndexList(compareNumber);
-        task.printResult(listIndexes);
+        System.out.println(task.getElementsFromList(listNumbers, compareNumber));
+
+
+//        System.out.println(indexes);
     }
 
-//    private void fillListNumbers() {
-//    }
 
-    private List<Integer> getIndexList(int compareNumber) {
-        List<Integer> listIndexes = new ArrayList<>();
+    public List<Integer> getElementsFromList(List<Integer> sourceList, int sourceNumber) {
+        // копируем и сортируем список по убыванию
+        List<Integer> listNumbers = new ArrayList<>(sourceList);
+        listNumbers.sort(Collections.reverseOrder());
+//        System.out.println(listNumbers);
 
-        // искомое число есть в списке - сразу возвращаем его индекс
-        if (listNumbers.contains(compareNumber)) {
-            listIndexes.add(listNumbers.indexOf(compareNumber));
-            return listIndexes;
-        }
+        Deque<Integer> deque = new LinkedList<>();
+        int i = 0;
+        int lastIndex = i;
+        int compareNumber = sourceNumber;
 
-        Collections.sort(listNumbers, Collections.reverseOrder());
-
-        int sum = 0;
-        List<Integer> listFounds = new ArrayList<>();
-        boolean isFound = false;
-        while (!isFound) {
-            for (Integer num : listNumbers) {
-                sum += num;
-                if (sum == compareNumber) {
-                    isFound = true;
-                    break;
-                } else if (sum > compareNumber) {
-
-                }
+        while (lastIndex < listNumbers.size()) {
+            if (compareNumber > 0) {
+                int currentValue = listNumbers.get(i);
+                deque.push(currentValue);
+                compareNumber -= currentValue;
+                i++;
+            } else if (!deque.isEmpty()){
+                compareNumber += deque.pop();
             }
-//            listFounds.add(listNumbers.get());
-            printResult(listNumbers);
+
+            if (compareNumber == 0) {
+                List<Integer> indexes = getIndexesFromValues(sourceList, deque);
+                Collections.sort(indexes);
+                return indexes;
+            }
+
+            if (i == listNumbers.size() ) {
+//                while (!deque.isEmpty()) compareNumber += deque.pop();
+                deque.clear();
+                compareNumber = sourceNumber;
+                lastIndex++;
+                i = lastIndex;
+            }
         }
 
-        return listIndexes;
+        return null;
     }
 
-    private void printResult(List<Integer> listIndexes) {
-        System.out.println(listIndexes);
+    private List<Integer> getIndexesFromValues(List<Integer> list, Deque<Integer> values) {
+        List<Integer> indexes = new ArrayList<>();
+
+        for (Integer value : values) {
+            indexes.add(list.indexOf(value));
+        }
+
+        return indexes;
     }
+
 }
