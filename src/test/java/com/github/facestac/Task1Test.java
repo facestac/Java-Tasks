@@ -31,4 +31,19 @@ class Task1Test {
     }
 
 
+    @ParameterizedTest
+    @MethodSource("twoValues")
+    void testgeTTwoValuesIndexes(List<Integer> list, int compareValue, List<Integer> indexes) {
+        assertEquals(task1.getIndexesTwoValues(list, compareValue), indexes);
+    }
+
+    static Stream<Arguments> twoValues() {
+        return Stream.of(
+                Arguments.of(List.of(1, 19, 4, 6, 5), 23, List.of(1, 2)),
+                Arguments.of(List.of(1, 2), 3, List.of(0, 1)),
+                Arguments.of(List.of(8, 2, 1), 9, List.of(0, 2)),
+                Arguments.of(List.of(3, 8, 15, 17), 23, List.of(1, 2))
+        );
+    }
+
 }

@@ -25,6 +25,9 @@ public class Task1 {
 
         System.out.println(task.getElementsFromList(listNumbers, compareNumber));
 
+        // Two numbers
+        System.out.println(task.getIndexesTwoValues(listNumbers, compareNumber));
+
     }
 
 
@@ -82,4 +85,34 @@ public class Task1 {
         return indexes;
     }
 
+
+    /*
+    Поиск индексов для двух чисел
+     */
+    public List<Integer> getIndexesTwoValues(List<Integer> sourceList, int sourceNumber) {
+        Map<Integer, Integer> map = convertListToMap(sourceList);
+        List<Integer> indexes = new ArrayList<>();
+
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            int value = sourceNumber - entry.getKey();
+
+            if (map.containsKey(value)) {
+                indexes.add(entry.getValue());
+                indexes.add(map.get(value));
+                break;
+            }
+        }
+
+        return indexes;
+    }
+
+    private Map<Integer, Integer> convertListToMap(List<Integer> list) {
+        Map<Integer, Integer> map = new LinkedHashMap<>(list.size());
+
+        for (Integer item : list) {
+            map.put(item, list.indexOf(item));
+        }
+
+        return map;
+    }
 }

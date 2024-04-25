@@ -26,12 +26,13 @@ public class Task3 {
 
 
     public static void main(String[] args) {
-        final String exampleString = "[({()})(())]";
+        final String exampleString = "";
         Task3 task = new Task3();
         System.out.println(task.isLineValid(exampleString));
     }
 
     public boolean isLineValid(String str) {
+        if (str.isEmpty()) return true;
         if (!isEvenLineCount(str)) return false;
         if (!isValidLastCharacter(str)) return false;
 
