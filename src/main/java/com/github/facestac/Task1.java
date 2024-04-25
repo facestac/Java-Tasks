@@ -19,12 +19,12 @@ public class Task1 {
 
     public static void main(String[] args) {
         Task1 task = new Task1();
-        List<Integer> listNumbers = new ArrayList<>(List.of(15, 2, 3, 17, 8, 45));
+        
         int compareNumber = 23;
+        List<Integer> listNumbers = new ArrayList<>(List.of(15, 2, 3, 17, 8, 45));
+
         System.out.println(task.getElementsFromList(listNumbers, compareNumber));
 
-
-//        System.out.println(indexes);
     }
 
 
@@ -40,6 +40,10 @@ public class Task1 {
         int compareNumber = sourceNumber;
 
         while (lastIndex < listNumbers.size()) {
+            // из копии исходного числа вычитаем числа из списка, если
+            // искомое число больше 0 и прибавляем обратно, если искомое
+            // число стало меньше 0. Добавляем числа в стэк и удаляем
+            // при таких же условиях.
             if (compareNumber > 0) {
                 int currentValue = listNumbers.get(i);
                 deque.push(currentValue);
@@ -49,14 +53,15 @@ public class Task1 {
                 compareNumber += deque.pop();
             }
 
+            // если нашли сумму для заданного числа
             if (compareNumber == 0) {
                 List<Integer> indexes = getIndexesFromValues(sourceList, deque);
                 Collections.sort(indexes);
                 return indexes;
             }
-
+            // если дошли до конца списка, обнуляем стэк и переходим
+            // к следующему числу в списке
             if (i == listNumbers.size() ) {
-//                while (!deque.isEmpty()) compareNumber += deque.pop();
                 deque.clear();
                 compareNumber = sourceNumber;
                 lastIndex++;

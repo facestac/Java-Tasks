@@ -24,11 +24,11 @@ public class Task3 {
     private final static String OPEN_BRACKETS = "{[(";
     private final static String CLOSE_BRACKETS = "}])";
 
-    private final String exampleString = "[({()})(())]";
 
     public static void main(String[] args) {
+        final String exampleString = "[({()})(())]";
         Task3 task = new Task3();
-        System.out.println(task.isLineValid(task.exampleString));
+        System.out.println(task.isLineValid(exampleString));
     }
 
     public boolean isLineValid(String str) {
