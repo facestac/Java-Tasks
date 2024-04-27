@@ -32,7 +32,7 @@ public class Task3 {
     }
 
     public String convertJadenCasedString(String str) {
-//        if (str.isEmpty()) return null;
+        if (str.isEmpty()) return null;
 
         return Arrays.stream(str.split(" "))
                 .map(s -> s.substring(0, 1).toUpperCase() + s.substring(1))
