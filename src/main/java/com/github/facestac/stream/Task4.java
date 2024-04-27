@@ -26,10 +26,10 @@ public class Task4 {
         String a = "xyaabbbccccdefww";
         String b = "xxxxyyyyabklmopq";
 
-        System.out.println(t.convertJadenCasedString(a, b));
+        System.out.println(t.getDistinctLetters(a, b));
     }
 
-    public String convertJadenCasedString(String s1, String s2) {
+    public String getDistinctLetters(String s1, String s2) {
         Stream<String> stream1 = Arrays.stream(s1.split(""));
         Stream<String> stream2 = Arrays.stream(s2.split(""));
 
