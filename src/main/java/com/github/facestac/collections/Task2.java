@@ -1,4 +1,4 @@
-package com.github.facestac;
+package com.github.facestac.collections;
 
 /*
 Task2.1

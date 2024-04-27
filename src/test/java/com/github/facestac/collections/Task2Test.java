@@ -1,4 +1,4 @@
-package com.github.facestac;
+package com.github.facestac.collections;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

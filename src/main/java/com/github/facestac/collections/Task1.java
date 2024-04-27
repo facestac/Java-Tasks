@@ -1,4 +1,4 @@
-package com.github.facestac;
+package com.github.facestac.collections;
 
 /*
 Дан список целых чисел. Необходимо реализовать метод, который возвращает индексы списка,

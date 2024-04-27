@@ -1,4 +1,4 @@
-package com.github.facestac;
+package com.github.facestac.collections;
 
 /*
 Дана строка состоящия из символов (){}[]. Строка является валидной, если каждая
@@ -26,9 +26,11 @@ public class Task3 {
 
 
     public static void main(String[] args) {
-        final String exampleString = "";
+        final String exampleString = "{[]{()}}(";
         Task3 task = new Task3();
         System.out.println(task.isLineValid(exampleString));
+
+        System.out.println(task.isLineValid_v2(exampleString));
     }
 
     public boolean isLineValid(String str) {
@@ -80,5 +82,44 @@ public class Task3 {
             case '[', ']' -> 1;
             default -> 2;
         };
+    }
+
+
+
+    // version 2
+    public boolean isLineValid_v2(String str) {
+        char[] charArray = str.toCharArray();
+
+        Deque<Character> deque = new LinkedList<>();
+        for (char c : charArray) {
+            deque.add(c);
+        }
+
+//        System.out.println(deque);
+        ListIterator<Character> iterator = (ListIterator<Character>) deque.iterator();
+
+        while (iterator.hasNext()) {
+            Character first = iterator.next();
+            if (isOpenBracket(first)) {
+                Character second = ' ';
+                if (iterator.hasNext()) second = iterator.next();
+                if (isCloseBracket(second)) {
+
+                    if (getBracketType(first) == getBracketType(second)) {
+                        iterator.remove();
+                        iterator.previous();
+                        iterator.remove();
+                        if (iterator.hasPrevious()) iterator.previous();
+                    }
+                } else {
+                    iterator.previous();
+                }
+            }
+
+        }
+//        System.out.println(deque);
+
+
+        return deque.isEmpty();
     }
 }
