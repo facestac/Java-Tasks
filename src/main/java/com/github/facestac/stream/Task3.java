@@ -22,6 +22,7 @@ Note that the Java version expects a return value of null for an empty string or
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class Task3 {
@@ -34,7 +35,7 @@ public class Task3 {
     public String convertJadenCasedString(String str) {
         if (str.isEmpty()) return null;
 
-        return Arrays.stream(str.split(" "))
+        return Stream.of(str.split(" "))
                 .map(s -> s.substring(0, 1).toUpperCase() + s.substring(1))
                 .collect(Collectors.joining(" "));
     }

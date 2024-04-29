@@ -18,6 +18,7 @@ Happy Coding!
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class Task2 {
@@ -28,7 +29,7 @@ public class Task2 {
     }
 
     public int getSquareDigits(Integer num) {
-        String str = Arrays.stream(String.valueOf(num).split(""))
+        String str = Stream.of(String.valueOf(num).split(""))
                 .map(Integer::parseInt)
                 .map(x -> x * x)
                 .map(Object::toString)

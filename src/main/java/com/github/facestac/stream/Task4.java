@@ -30,8 +30,8 @@ public class Task4 {
     }
 
     public String getDistinctLetters(String s1, String s2) {
-        Stream<String> stream1 = Arrays.stream(s1.split(""));
-        Stream<String> stream2 = Arrays.stream(s2.split(""));
+        Stream<String> stream1 = Stream.of(s1.split(""));
+        Stream<String> stream2 = Stream.of(s2.split(""));
 
         return Stream.concat(stream1, stream2)
                 .distinct()

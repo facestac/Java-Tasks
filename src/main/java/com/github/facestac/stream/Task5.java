@@ -24,26 +24,25 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 
 public class Task5 {
     public static void main(String[] args) {
         Task5 t = new Task5();
-        List<Integer> lisr = new ArrayList<>(List.of(1,3,5,6,7,8));
+        List<Integer> exampleList = new ArrayList<>(List.of(1,3,5,6,7,8));
 
-//        System.out.println(t.convertJadenCasedString(a, b));
+        System.out.println(t.getCorrectList(exampleList));
     }
 
-    public String convertJadenCasedString(String s1, String s2) {
-        Stream<String> stream1 = Arrays.stream(s1.split(""));
-        Stream<String> stream2 = Arrays.stream(s2.split(""));
+    public List<Integer> getCorrectList(List<Integer> sourceList) {
 
-        return Stream.concat(stream1, stream2)
-                .distinct()
-                .sorted()
-                .collect(Collectors.joining());
+       return sourceList.stream().collect(Collectors.collectingAndThen(
+               Collectors.toList(),
+                list -> IntStream.rangeClosed(list.get(0), list.get(list.size() - 1)).
+                        boxed().
+                        collect(Collectors.toList())
+       ));
     }
-
-
 }
