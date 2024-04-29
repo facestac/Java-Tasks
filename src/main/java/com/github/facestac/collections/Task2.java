@@ -24,6 +24,7 @@ public class Task2 {
         List<Integer> exampleList = new ArrayList<>(List.of(8, 8, 23, 23, 8, 4, 4, 4, 23, 4,5,8,8));
 
         System.out.println(task.isContainsDuplicates(exampleList));
+        System.out.println(task.isContainsDuplicates_v2(exampleList));
 
         Map<Integer, Integer> map = task.getNumberOfDuplicates(exampleList);
         task.printNumberOfDuplicates(map);
@@ -37,6 +38,19 @@ public class Task2 {
 
         return (list.size() != set.size());
     }
+
+    public boolean isContainsDuplicates_v2(List<Integer> list) {
+        HashSet<Integer> set = new HashSet<>();
+
+        for (Integer num : list) {
+            // если число уже существует в HashSet, add вернет false
+            if (!set.add(num)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     private Set<Integer> convertListToSet(List<Integer> listNumbers) {
         return (new HashSet<>(listNumbers));

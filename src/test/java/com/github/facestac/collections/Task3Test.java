@@ -10,7 +10,7 @@ class Task3Test {
     Task3 task3 = new Task3();
 
     @ParameterizedTest
-    @ValueSource(strings = { "[()]{[]}", "()", "(())", "[({()})(())]", "[({})]", "[[({()}){[]}]()]" })
+    @ValueSource(strings = {"", "[()]{[]}", "()", "(())", "[({()})(())]", "[({})]", "[[({()}){[]}]()]" })
     void testIsLineValid(String str) {
         assertTrue(task3.isLineValid(str));
 

@@ -90,29 +90,21 @@ public class Task1 {
     Поиск индексов для двух чисел
      */
     public List<Integer> getIndexesTwoValues(List<Integer> sourceList, int sourceNumber) {
-        Map<Integer, Integer> map = convertListToMap(sourceList);
+        Map<Integer, Integer> map = new HashMap<>();
         List<Integer> indexes = new ArrayList<>();
 
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            int value = sourceNumber - entry.getKey();
+        for (int i = 0; i < sourceList.size(); i++) {
+            int value = sourceNumber - sourceList.get(i);
 
             if (map.containsKey(value)) {
-                indexes.add(entry.getValue());
                 indexes.add(map.get(value));
+                indexes.add(i);
                 break;
             }
+            map.put(sourceList.get(i), i);
         }
 
         return indexes;
     }
 
-    private Map<Integer, Integer> convertListToMap(List<Integer> list) {
-        Map<Integer, Integer> map = new LinkedHashMap<>(list.size());
-
-        for (Integer item : list) {
-            map.put(item, list.indexOf(item));
-        }
-
-        return map;
-    }
 }
