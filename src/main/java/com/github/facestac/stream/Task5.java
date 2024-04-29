@@ -21,11 +21,8 @@ Input:  1,3,5,6,7,8 Output: 1,2,3,4,5,6,7,8
  */
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 
 public class Task5 {
@@ -37,12 +34,30 @@ public class Task5 {
     }
 
     public List<Integer> getCorrectList(List<Integer> sourceList) {
+//
+         return IntStream
+                .rangeClosed(sourceList.get(0), sourceList.get(sourceList.size() - 1))
+                .boxed()
+                .toList();
 
-       return sourceList.stream().collect(Collectors.collectingAndThen(
-               Collectors.toList(),
-                list -> IntStream.rangeClosed(list.get(0), list.get(list.size() - 1)).
-                        boxed().
-                        collect(Collectors.toList())
-       ));
+
+//        return Stream
+//                .iterate(
+//                        sourceList.get(0),
+//                        x -> x <= sourceList.get(sourceList.size() - 1),
+//                        x -> x + 1)
+//                .toList();
+
+
+//        return sourceList.stream()
+//                .collect(Collectors.collectingAndThen(
+//                        Collectors.toList(),
+//                        list -> IntStream.rangeClosed(list.get(0),
+//                                        list.get(list.size() - 1))
+//                                .boxed()
+//                                .toList()
+//                ));
+
+
     }
 }

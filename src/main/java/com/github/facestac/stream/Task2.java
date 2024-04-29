@@ -16,7 +16,6 @@ Note: The function accepts an integer and returns an integer.
 Happy Coding!
  */
 
-import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -24,7 +23,7 @@ import java.util.stream.Stream;
 public class Task2 {
     public static void main(String[] args) {
         Task2 t = new Task2();
-        int testNumber = 9124;
+        int testNumber = 761;
         System.out.println(t.getSquareDigits(testNumber));
     }
 
@@ -34,11 +33,10 @@ public class Task2 {
                 .map(x -> x * x)
                 .map(Object::toString)
                 .collect(Collectors.joining());
-
+//
         return Integer.parseInt(str);
 
-
-//        return Arrays.stream(String.valueOf(num).split(""))
+//        return Stream.of(String.valueOf(num).split(""))
 //                 .map(Integer::parseInt)
 //                 .map(x -> x * x)
 //                 .map(Object::toString)

@@ -18,14 +18,14 @@ XO("zzoo") => false
 public class Task1 {
     public static void main(String[] args) {
         Task1 t = new Task1();
-        String testString = "";
+        String testString = "ox";
         System.out.println(t.isSameAmount(testString));
     }
 
     public boolean isSameAmount(String s) {
         long countX = getCountOfChar(s, 'x');
         long countO = getCountOfChar(s, 'o');
-
+//
         return countX == countO;
     }
 
